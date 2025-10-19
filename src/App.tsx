@@ -1,22 +1,28 @@
-// ...existing code...
-import { Routes, Route } from 'react-router-dom';
-import { AppShell, Box, Group, Anchor } from '@mantine/core';
-import Posts from './pages/Posts';
+import React, { useState } from "react";
+import { AppShell, Box } from "@mantine/core";
+import { UniverseLanding } from "./pages/UniverseLanding/UniverseLanding";
+import UniverseLanding3 from "./pages/UniverseLanding3/UniverseLanding3";
+import { HeaderNav } from "./components/HeaderNav/HeaderNav";
 
-export default function App() {
+type Page = "landing" | "landing3";
+
+const App = () => {
+  const [page, setPage] = useState<Page>("landing");
+
   return (
-    <AppShell>
+    <AppShell m="0" p="0">
       <AppShell.Header h={60} p="xs">
         <Box component="div" h={60} p="xs">
-          <Group>
-            <Anchor href="/">Home</Anchor>
-            <Anchor href="/posts">Posts</Anchor>
-          </Group>
+          <HeaderNav onNavigate={(p: Page) => setPage(p)} />
         </Box>
       </AppShell.Header>
-      <Routes>
-        <Route path="/posts" element={<Posts />} />
-      </Routes>
+
+      <AppShell.Main style={{ padding: 0 }}>
+        {page === "landing" && <UniverseLanding />}
+        {page === "landing3" && <UniverseLanding3 />}
+      </AppShell.Main>
     </AppShell>
   );
-}
+};
+
+export default App;

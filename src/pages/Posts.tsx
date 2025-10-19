@@ -1,4 +1,4 @@
-import { useGetPostsQuery } from '../services/postsApi';
+import { useGetPostsQuery } from "../services/postsApi";
 
 export default function Posts() {
   const { data, isLoading } = useGetPostsQuery();

@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ensure the app root fills the viewport and remove default margins */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -23,13 +30,13 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
+  /* don't center the root — let your app control layout */
+  display: block;
   min-width: 320px;
   min-height: 100vh;
 }
 
+/* rest unchanged */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -57,7 +64,8 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #000000;
+     font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   }
   a:hover {
     color: #747bff;

@@ -1,4 +1,14 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm test
+
+# format code (ignore project config to avoid ESM/CommonJS conflict)
+npx prettier --no-config --write "src/**/*.{ts,tsx,js,jsx,json,css,md}"
+
+# lint and auto-fix
+npm run lint --silent -- --fix
+
+# restage any changes made by prettier/eslint --fix
+git add -A
+
+# npm test
